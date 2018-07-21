@@ -9,5 +9,10 @@ sealed trait Option[+A] {
 }
 
 trait Helper {
+
   def lift[A, B](f: A => B): Option[A] => Option[B] = _ map f
+
+  def if2[A](cond: Boolean, onTrue: () => A, onFalse: () => A): A =
+    if (cond) onTrue() else onFalse()
+
 }
